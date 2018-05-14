@@ -12,6 +12,7 @@ from keras import backend as K
 from keras.layers import Input
 from keras.models import Model
 from keras_frcnn import roi_helpers
+from keras_frcnn.pascal_voc_parser import get_data
 
 sys.setrecursionlimit(40000)
 
@@ -147,6 +148,8 @@ classes = {}
 bbox_threshold = 0.8
 
 visualise = True
+
+#all_imgs, classes_count, class_mapping = get_data(options.train_path)
 
 for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):

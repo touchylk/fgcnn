@@ -112,7 +112,9 @@ random.shuffle(all_imgs)
 num_imgs = len(all_imgs)
 
 train_imgs = [s for s in all_imgs if s['imageset'] == 'trainval']
+print(len(train_imgs))
 val_imgs = [s for s in all_imgs if s['imageset'] == 'test']
+print(len(val_imgs))
 
 print('Num train samples {}'.format(len(train_imgs)))
 print('Num val samples {}'.format(len(val_imgs)))
@@ -122,7 +124,7 @@ data_gen_train = data_generators.get_anchor_gt(train_imgs, classes_count, cfg, n
 #get_anchor_gt l里的 输入train_imgs是在pascalvoc里生成的,包含了图片路径.bbox等.
 #此函数为迭代函数,输出为 yield np.copy(x_img), [np.copy(y_rpn_cls), np.copy(y_rpn_regr)], img_data_aug
 #x_img为cv.numpy [np.copy(y_rpn_cls), np.copy(y_rpn_regr)]为rpn标签.
-data_gen_val = data_generators.get_anchor_gt(val_imgs, classes_count, cfg, nn.get_img_output_length,K.image_dim_ordering(), mode='val')
+#data_gen_val = data_generators.get_anchor_gt(val_imgs, classes_count, cfg, nn.get_img_output_length,K.image_dim_ordering(), mode='val')
 
 if K.image_dim_ordering() == 'th':
 	input_shape_img = (3, None, None)
@@ -312,4 +314,4 @@ for epoch_num in range(num_epochs):
 			print('Exception: {}'.format(e))
 			continue
 
-print('Training complete, exiting.')
+print('Training complete, 呵呵.')
