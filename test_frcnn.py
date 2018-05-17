@@ -141,7 +141,7 @@ model_classifier.load_weights(C.model_path, by_name=True)
 model_rpn.compile(optimizer='sgd', loss='mse')
 model_classifier.compile(optimizer='sgd', loss='mse')
 
-all_imgs = []
+#all_imgs = []
 
 classes = {}
 
@@ -149,15 +149,17 @@ bbox_threshold = 0.8
 
 visualise = True
 
-#all_imgs, classes_count, class_mapping = get_data(options.train_path)
+all_imgs, _, _ = get_data(options.test_path)
+val_imgs = [s for s in all_imgs if s['imageset'] == 'test']
 
-for idx, img_name in enumerate(sorted(os.listdir(img_path))):
-	if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
+for img_anno in val_imgs:
+	filepath = img_anno['filepath']
+	if not filepath.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
 		print('oo')
 		continue
-	print(img_name)
+	print(filepath)
 	st = time.time()
-	filepath = os.path.join(img_path,img_name)
+	#filepath = os.path.join(img_path,img_name)
 
 	img = cv2.imread(filepath)
 
